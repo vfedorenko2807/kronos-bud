@@ -1,0 +1,25 @@
+---
+import Ukraine from "../../assets/ukraine.svg";
+import Card from "../AboutCard.astro";
+
+const features = [
+    {title: "13+ років", desc: "на будівельному ринку України"},
+    {title: "СС2 та СС3", desc: "ліцензії на виконання будівельних робіт"},
+    {title: "54 проєктів", desc: "Успішно реалізованих обʼєктів"},
+    {title: "Юридичний супровід", desc: "ліцензії на виконання будівельних робіт"},
+]
+---
+
+<section class="w-screen h-screen bg-gray-200 relative">
+    <div class="m-auto h-full w-[80vw]">
+        <h2 class="pt-40 w-3/5">Ми будівельна компанія повного циклу</h2>
+        <p class="w-2/5">Реалізуємо житлові, комерційні, промислові та інфраструктурні проєкти по всій Україні.</p>
+
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50">
+            {features.map(item => (
+                <Card title={item.title} desc={item.desc}/>
+            ))}
+        </div>
+        <Ukraine class="absolute right-0 bottom-0" />
+    </div>
+</section>

@@ -1,0 +1,120 @@
+---
+import { Image } from "astro:assets";
+import ImgLeft from "../../assets/about-img-left.png"
+import ImgRight from "../../assets/about-img-right.png"
+import ImgMid from "../../assets/about-img-mid.png"
+---
+
+<section class="scroll-container w-screen h-[500vh] bg-stale-200">
+    <div class="cards-grid sticky top-0 grid grid-cols-3 gap-0">
+        <h2 class="headline-one absolute top-40 font-light left-1/2 -translate-x-1/2 text-center text-[4rem] leading-[100%] w-[50vw] ">Ми будівельна компанія повного циклу</h2>
+        <div class="card">
+            <Image class="card-front object-contain object-right" src={ImgLeft} alt="left" width={800} />
+            <div class="card-back"> hello </div>
+            <div class="card-front-2"> hello again </div>
+        </div>
+        <div class="card">
+            <Image class="card-front object-contain object-center" src={ImgMid} alt="left" width={800} />
+            <div class="card-back"> hello </div>
+            <div class="card-front-2"> hello again </div>
+        </div>
+        <div class="card">
+            <Image class="card-front object-contain object-left" src={ImgRight} alt="left" width={800} />
+            <div class="card-back"> hello </div>
+            <div class="card-front-2"> hello again </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    import { gsap } from 'gsap';
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    import { SplitText } from "gsap/SplitText";
+
+    gsap.registerPlugin(ScrollTrigger, SplitText);
+
+    let tl = gsap.timeline({
+        scrollTrigger: {
+            trigger: '.sctoll-container',
+            start: 'top top',
+            end: 'bottom bottom',
+            scrub: true
+        }
+    })
+
+    let headlineOneSplit = SplitText.create('.headline-one', { 
+        type: "lines, words",
+        mask: "lines",
+     });
+
+    tl.to('.cards-grid', {
+        gap: '40px',
+        padding: '20vw 8vw 4vw 8vw'
+    })
+    .from(headlineOneSplit.words, {
+        y: 200,
+        stagger: 0.1,
+    }, ">-.5")
+    .to('.card', {
+        transformPerspective: 1000, // Sets perspective on the element natively
+        rotationY: 180,     
+        stagger: 0.05,
+    }, ">-.5")
+    .to('.card-front-2', {
+        display: "block",
+    })
+    .to('.card', {
+        rotationY: 360,
+        stagger: 0.05,
+    })
+    
+</script>
+
+<style>
+    .card {
+        height: 100%;
+        width: 100%;
+        position: relative;
+        transform-style: preserve-3d;
+        transform: perspective(1000px) rotate3d(0, 0, 0, 0deg);
+
+    }
+
+    .card-front {
+        height: 100%;
+        width: 100%;
+        backface-visibility: hidden;
+        position: absolute;
+        transform: rotateY(0deg);
+        overflow: hidden;
+
+    }
+
+    .card-back {
+        height: 100%;
+        width: 100%;
+        backface-visibility: hidden;
+        position: absolute;
+        transform: rotateY(180deg);
+        background: #000;
+        color: #fff;
+    }
+
+    .card-front-2 {
+        height: 100%;
+        width: 100%;
+        backface-visibility: hidden;
+        display: none;
+        position: absolute;
+        transform: rotateY(0deg);
+        overflow: hidden;
+        background: #fff;
+        color: #000;
+        z-index: 2;
+    }
+
+    .cards-grid {
+        height: 100vh;
+        width: 100vw;
+    }
+</style>
