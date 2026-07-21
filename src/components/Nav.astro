@@ -1,12 +1,28 @@
-<nav class="z-50 fixed w-[80vw] top-4 left-1/2 -translate-x-1/2 flex justify-between items-center py-3 px-6 rounded-xl bg-black/5 backdrop-blur-2xl">
-    <h3 class="text-stale-900">Logo</h3>
-    <div class="text-stale-900 flex gap-4">
+---
+import { Image } from "astro:assets";
+import Logo from "../assets/Logo.svg"
+---
+
+<nav class="z-30 fixed w-[80vw] top-2 left-1/2 -translate-x-1/2 flex justify-between items-center py-2 pl-6 pr-2 rounded-xl bg-black/5 backdrop-blur-2xl">
+    <Image src={Logo} alt="" width={48}/>
+    <div class="text-stale-900 flex gap-8">
         <a href="">Про нас</a>
         <a href="">Цінності</a>
-        <a href="">Проєкти</a>
+        <a href="">Проекти</a>
+        <a href="">Контакт</a>
     </div>
 
     <button class="bg-orange-600 text-white uppercase py-2 px-4 rounded-lg">
         Звʼязатись
     </button>
 </nav>
+
+<script>
+    import { gsap } from 'gsap';
+
+    gsap.from("nav", {
+        y: -400,
+        delay: 1,
+        duration: 2,
+    })
+</script>

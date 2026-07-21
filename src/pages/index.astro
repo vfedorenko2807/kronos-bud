@@ -2,7 +2,13 @@
 import "../styles.css"
 import Nav from "../components/Nav.astro";
 import Hero from "../components/sections/Hero.astro"
-import About from "../components/sections/AboutNew.astro"
+import About from "../components/sections/About.astro"
+import Services from "../components/sections/Services.astro"
+import Projects from "../components/sections/Projects.astro"
+import Contact from "../components/sections/Contact.astro"
+
+import Loading from "../components/sections/Loading.astro";
+
 ---
 
 <html lang="en">
@@ -14,9 +20,27 @@ import About from "../components/sections/AboutNew.astro"
 		<meta name="generator" content={Astro.generator} />
 		<title>Astro</title>
 	</head>
-	<body class="bg-gray-100">
+	<body class="bg-light-blue">
+		<Loading />
 		<Nav/>
 		<Hero />
 		<About />
+		<Services />
+		<Projects />
+		<Contact />
 	</body>
 </html>
+
+<script>
+	document.body.classList.add('no-scroll');
+	setInterval(() => {
+		document.body.classList.remove('no-scroll');
+	}, 2500)
+</script>
+
+<style>
+	.no-scroll {
+		overflow: hidden;
+		height: 100vh; /* Keeps the viewport locked to the current window height */
+		}
+</style>

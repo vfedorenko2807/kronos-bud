@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tektur:wdth,wght@75..100,400..900&display=swap');
 @import 'tailwindcss';
 
 
 @theme {
-    --font-sans: "IBM Plex Sans", ui-sans-serif
+    --font-sans: "Tektur", ui-sans-serif;
+    --font-heading: "Tektur", ui-serif;
+    --color-light-blue: #E5F2FB;
 }

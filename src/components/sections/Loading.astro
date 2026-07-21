@@ -1,0 +1,48 @@
+---
+import { Image } from "astro:assets";
+import Logo from "../../assets/FullLogo.svg"
+---
+
+<section class="loading w-screen h-screen flex flex-col gap-0 fixed z-50">
+    <div class="stripe w-full h-[10vh] bg-blue-700"></div>
+    <div class="stripe w-full h-[10vh] bg-blue-700"></div>
+    <div class="stripe w-full h-[10vh] bg-blue-700"></div>
+    <div class="stripe w-full h-[10vh] bg-blue-700"></div>
+    <div class="stripe w-full h-[10vh] bg-blue-700"></div>
+    <div class="stripe w-full h-[10vh] bg-blue-700"></div>
+    <div class="stripe w-full h-[10vh] bg-blue-700"></div>
+    <div class="stripe w-full h-[10vh] bg-blue-700"></div>
+    <div class="stripe w-full h-[10vh] bg-blue-700"></div>
+    <div class="stripe w-full h-[10vh] bg-blue-700"></div>
+    
+    <div class="logo absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-clip">
+        <Image src={Logo} alt="" width={240}/>
+    </div>
+
+</section>
+
+<script>
+    import { gsap } from "gsap"
+
+    const stripes = gsap.utils.toArray(".stripe")
+
+    const tl = gsap.timeline();
+
+    tl.from(".logo", {
+        height: 0,
+    }, "<")
+    .from("pause", {
+        duration: .5,
+    })
+    .to(stripes, {
+        scaleY: 0,
+        transformOrigin: "bottom",
+        stagger: 0.1
+    })
+    .to(".logo", {
+        height: 0,
+    }, "<")
+    .to(".loading", {
+        display: "none"
+    })
+</script>

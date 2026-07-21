@@ -1,14 +1,77 @@
 ---
-import { Image } from "astro:assets";
-import BgImg from "../../assets/hero-img.png";
 ---
 
-
-<section class="w-screen bg-stale-200">
-    <div class="m-auto w-[80vw] flex flex-col gap-0 pt-40 pb-20 text-stale-900">
-        <h1 class="text-[120px] font-light leading-[100%] uppercase">Створюємо</h1>
-        <h1 class="text-[120px] font-light leading-[100%] uppercase">інфраструктуру</h1>
-        <h1 class="text-[120px] font-light leading-[100%] uppercase text-right">що працює</h1>
-        <h1 class="text-[120px] font-light leading-[100%] uppercase text-right">десятиліттями</h1>
+<section class="parent w-screen pt-[104px] pb-[64px] grid place-items-center relative overflow-x-clip">
+    <div class="m-auto w-[80vw] flex flex-col gap-0 text-stale-900">
+        <h1 class="line-1 hero-text font-heading leading-[90%] uppercase self-start">Створюємо</h1>
+        <h1 class="line-2 hero-text font-heading leading-[90%] uppercase self-start">інфраструктуру</h1>
+        <h1 class="line-3 hero-text font-heading leading-[90%] uppercase self-end">що працює</h1>
+        <h1 class="line-4 hero-text font-heading leading-[90%] uppercase self-end">десятиліттями</h1>
     </div>
+
+    <div class="w-120 aspect-square bg-white rounded-full blur-3xl absolute top-4 left-4 -z-1"></div>
+
+    <div class="w-200 aspect-square bg-white rounded-full blur-3xl absolute -bottom-80 -right-20 -z-1"></div>
+    
 </section>
+
+<style>
+    .hero-text {
+        font-size: 11rem;
+        font-weight: 450;
+        font-variation-settings:
+            "wdth" 75;
+    }
+</style>
+
+<script>
+    import { gsap } from 'gsap';
+    import { SplitText } from "gsap/SplitText";
+
+    gsap.registerPlugin(SplitText);
+
+    const splitLineOne = SplitText.create(".line-1", {
+        type: "chars, lines",
+        mask: "lines"
+    })
+
+    const splitLineTwo = SplitText.create(".line-2", {
+        type: "chars, lines",
+        mask: "lines"
+    })
+
+    const splitLineThree = SplitText.create(".line-3", {
+        type: "chars, lines",
+        mask: "lines"
+    })
+
+    const splitLineFour = SplitText.create(".line-4", {
+        type: "chars, lines",
+        mask: "lines"
+    })
+
+    const tl = gsap.timeline()
+
+    tl.from(".parent", {
+        height: 0,
+        duration: 2,
+        delay: 1,
+    })
+    .from(splitLineOne.chars, {
+        y: 300,
+        stagger: 0.05,
+    }, "<")
+    .from(splitLineTwo.chars, {
+        y: 300,
+        stagger: 0.05,
+    }, "<.5")
+    .from(splitLineThree.chars, {
+        y: 300,
+        stagger: 0.05,
+    }, "<.5")
+    .from(splitLineFour.chars, {
+        y: 300,
+        stagger: 0.05,
+    }, "<.5")
+
+</script>

@@ -1,0 +1,97 @@
+---
+import { Image } from "astro:assets";
+import projectImg1 from "../../assets/project-1.png"
+import projectImg2 from "../../assets/project-2.png"
+
+const projects = [
+    {title: "Парк Готель Скіфія", desc: "По праву вважається перлиною серед українських парк готелів. Розташований у затишному місці, далеко від доріг, біля озера, у неймовірно природному ландшафтному місці, який дарує своїм гостям не просто комфортабельний, а й цікавий відпочинок."},
+    {title: "Об'єкт «Арка»", desc: "Стратегічний інфраструктурний тунель на вулиці Ельворті під залізничним насипом. Відкритий у 2019 році, він дозволив організувати двосторонній рух. Будівництво сталевого гофрованого тунелю довжиною 34 метри коштувало місту близько 66 млн гривень та розташоване поруч з історичною аркою 1860 року."},
+]
+---
+
+<section class="w-screen h-screen p-40">
+    <h2 class="text-[4rem] font-bold text-center w-full mb-12">Проекти</h2>
+
+    <div class="flex gap-8 h-100 w-full pointer-effect-none">
+        <div id="project-1" class="flex flex-col gap-2">
+            <Image class="rounded-xl h-100 object-cover" width={1600} src={projectImg1} alt={projects[0].title}/>
+            <h3 class="font-semibold text-2xl">{projects[0].title}</h3>
+            <p class="project-desc-1">{projects[0].desc}</p>
+        </div>
+        <div id="project-2" class="flex flex-col gap-2">
+            <Image class="rounded-xl h-100 object-cover" width={1600} src={projectImg2} alt={projects[1].title}/>
+            <h3 class="font-semibold text-2xl">{projects[1].title}</h3>
+            <p class="project-desc-2">{projects[1].desc}</p>
+        </div>
+    </div>
+</section>
+
+<style>
+    #project-1, #project-2 {
+        flex: 1 1 0%;
+        transition: all .8s ease-in-out;
+    }
+
+    #project-1 h3, #project-2 h3 {
+        transition: all .8s ease-in-out;
+    }
+
+    #project-1:hover, #project-2:hover {
+        flex-grow: 2;
+    }
+
+    #project-1:hover h3, #project-2:hover h3 {
+        font-size: 2.5rem;
+    }
+</style>
+
+<script>
+    import { gsap } from 'gsap';
+    import { SplitText } from "gsap/SplitText";
+
+    gsap.registerPlugin(SplitText);
+
+    const project1 = document.getElementById('project-1');
+    const project2 = document.getElementById('project-2');
+    
+    let projectDesc1 = SplitText.create('.project-desc-1', {
+        type: "lines",
+        mask: "lines",
+    })
+
+    let projectDesc2 = SplitText.create('.project-desc-2', {
+        type: "lines",
+        mask: "lines",
+    })
+
+    gsap.set(projectDesc1.lines, {y: 200})
+    gsap.set(projectDesc2.lines, {y: 200})
+
+    const hoverDesc1 = gsap.to(projectDesc1.lines, {
+        y: 0,
+        stagger: .05,
+        paused: true,
+    })
+
+    const hoverDesc2 = gsap.to(projectDesc2.lines, {
+        y: 0,
+        stagger: .05,
+        paused: true,
+    })
+
+    if (project1 && project2) {
+        project1.addEventListener('mouseover', () => {
+            hoverDesc1.play();
+        })
+        project1.addEventListener('mouseout', () => {
+            hoverDesc1.reverse();
+        })
+
+        project2.addEventListener('mouseover', () => {
+            hoverDesc2.play();
+        })
+        project2.addEventListener('mouseout', () => {
+            hoverDesc2.reverse();
+        })
+    }
+</script>
