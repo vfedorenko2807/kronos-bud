@@ -9,5 +9,5 @@ export default defineConfig({
         plugins: [tailwindcss()],
     },
     adapter: cloudflare(),
-    output: 'static', // or 'server' if you need SSR
+    output: 'server', // or 'server' if you need SSR
 });

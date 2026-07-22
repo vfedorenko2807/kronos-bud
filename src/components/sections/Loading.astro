@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 import Logo from "../../assets/FullLogo.svg"
 ---
 
@@ -16,7 +15,10 @@ import Logo from "../../assets/FullLogo.svg"
     <div class="stripe w-full h-[10vh] bg-blue-700"></div>
     
     <div class="logo absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 overflow-clip">
-        <Image src={Logo} alt="" width={240}/>
+        <img 
+            src={Logo.src} 
+            alt="" 
+            width="240px"/>
     </div>
 
 </section>

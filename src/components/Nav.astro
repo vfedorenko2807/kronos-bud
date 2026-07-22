@@ -1,10 +1,14 @@
 ---
-import { Image } from "astro:assets";
 import Logo from "../assets/Logo.svg"
 ---
 
 <nav class="z-30 fixed w-[80vw] top-2 left-1/2 -translate-x-1/2 flex justify-between items-center py-2 pl-6 pr-2 rounded-xl bg-black/5 backdrop-blur-2xl">
-    <Image src={Logo} alt="" width={48}/>
+    <img
+        src={Logo.src}
+        alt="Logo"
+        width="48"
+        height="48"
+        />
     <div class="text-stale-900 flex gap-8">
         <a href="">Про нас</a>
         <a href="">Цінності</a>

@@ -1,173 +1,238 @@
 ---
 import { Image } from "astro:assets";
-import ImgLeft from "../../assets/about-img-left.png"
-import ImgRight from "../../assets/about-img-right.png"
-import ImgMid from "../../assets/about-img-mid.png"
+import ImgLeft from "../../assets/about-img-left.png";
+import ImgRight from "../../assets/about-img-right.png";
+import ImgMid from "../../assets/about-img-mid.png";
 import FlipCard from "../FlipCard.astro";
 
-import about1 from "../../assets/about-1.svg"
-import about2 from "../../assets/about-2.svg"
-import about3 from "../../assets/about-3.svg"
+import about1 from "../../assets/about-1.svg";
+import about2 from "../../assets/about-2.svg";
+import about3 from "../../assets/about-3.svg";
 
-import values1 from "../../assets/values-1.svg"
-import values2 from "../../assets/values-2.svg"
-import values3 from "../../assets/values-3.svg"
+import values1 from "../../assets/values-1.svg";
+import values2 from "../../assets/values-2.svg";
+import values3 from "../../assets/values-3.svg";
 
 const aboutCompany = [
-    {title: "13+ років на ринку", desc: "Багаторічний досвід та партнерські відносини є основою нашої репутації."},
-    {title: "Проєкти будь-якої складності", desc: "Реалізуємо житлові, комерційні, промислові та інфраструктурні проєкти по всій Україні."},
-    {title: "СС2 та СС3 ліцензії", desc: "Ліцензії для будування великих проєктів"},
-]
+  {
+    title: "13+ років на ринку",
+    desc: "Багаторічний досвід та партнерські відносини є основою нашої репутації.",
+  },
+  {
+    title: "Проєкти будь-якої складності",
+    desc: "Реалізуємо житлові, комерційні, промислові та інфраструктурні проєкти по всій Україні.",
+  },
+  {
+    title: "СС2 та СС3 ліцензії",
+    desc: "Ліцензії для будування великих проєктів",
+  },
+];
 
 const principles = [
-    {title: "Надійність", desc: "Багаторічний досвід та партнерські відносини є основою нашої репутації."},
-    {title: "Якість та безпека", desc: "Ми контролюємо кожен етап робіт та використовуємо сучасні технології будівництва."},
-    {title: "Інноваційність", desc: "Поєднуємо інженерний досвід із сучасними архітектурними рішеннями та технологіями будівництва."},
-]
+  {
+    title: "Надійність",
+    desc: "Багаторічний досвід та партнерські відносини є основою нашої репутації.",
+  },
+  {
+    title: "Якість та безпека",
+    desc: "Ми контролюємо кожен етап робіт та використовуємо сучасні технології будівництва.",
+  },
+  {
+    title: "Інноваційність",
+    desc: "Поєднуємо інженерний досвід із сучасними архітектурними рішеннями та технологіями будівництва.",
+  },
+];
 ---
 
 <section class="scroll-container w-screen h-[900vh] mb-80">
+  <div class="cards-grid sticky top-32 grid grid-cols-3 gap-0 po">
+    <h2
+      class="headline-one absolute -top-48 font-heading font-bold left-1/2 -translate-x-1/2 text-center text-[4rem] leading-[110%] w-[60vw]"
+    >
+      Ми будівельна компанія повного циклу
+    </h2>
+    <h2
+      class="headline-two absolute -top-48 font-heading font-bold left-1/2 -translate-x-1/2 text-center text-[3rem] leading-[110%] w-[60vw]"
+    >
+      Ці 3 приниципи показують як ми працюємо і чому наші партнери залишаються з
+      нами
+    </h2>
 
-    <div class="cards-grid sticky top-32 grid grid-cols-3 gap-0 po">
-        <h2 class="headline-one absolute -top-48 font-heading font-bold left-1/2 -translate-x-1/2 text-center text-[4rem] leading-[110%] w-[60vw] ">Ми будівельна компанія повного циклу</h2>
-        <h2 class="headline-two absolute -top-48 font-heading font-bold left-1/2 -translate-x-1/2 text-center text-[3rem] leading-[110%] w-[60vw] ">Ці 3 приниципи показують як ми працюємо і чому наші партнери залишаються з нами</h2>
-
-        <div class="card">
-            <div class="card-front overflow-hidden rounded-tl-xl rounded-bl-xl ">
-                <Image class="object-cover aspect-4/6" src={ImgLeft} alt="left" width={800} />
-            </div>
-            <FlipCard title={aboutCompany[0].title} desc={aboutCompany[0].desc}>
-                <Image src={about1} alt="left" width={600} />
-            </FlipCard>
-            <FlipCard title={principles[0].title} desc={principles[0].desc} variant="card-front-2">
-                <Image src={values1} alt="left" width={600} />
-            </FlipCard>
-        </div>
-        <div class="card">
-            <div class="card-front overflow-hidden">
-                <Image class="object-cover aspect-4/6" src={ImgMid} alt="left" width={800} />
-            </div>
-            <FlipCard title={aboutCompany[1].title} desc={aboutCompany[1].desc}>
-                <Image src={about2} alt="left" width={600} />
-            </FlipCard>
-            <FlipCard title={principles[1].title} desc={principles[1].desc} variant="card-front-2">
-                <Image src={values2} alt="left" width={600} />
-            </FlipCard>
-        </div>
-        <div class="card">
-            <div class="card-front overflow-hidden rounded-tr-xl rounded-br-xl -ml-px">
-                <Image class="object-cover aspect-4/6" src={ImgRight} alt="left" width={800} />
-            </div>
-            <FlipCard title={aboutCompany[2].title} desc={aboutCompany[2].desc}>
-                <Image src={about3} alt="left" width={600} />
-            </FlipCard>
-            <FlipCard title={principles[2].title} desc={principles[2].desc} variant="card-front-2">
-                <Image src={values3} alt="left" width={600} />
-            </FlipCard>
-        </div>
+    <div class="card">
+      <div class="card-front overflow-hidden rounded-tl-xl rounded-bl-xl">
+        <Image
+          class="object-cover aspect-4/6"
+          src={ImgLeft}
+          alt="left"
+          width={800}
+        />
+      </div>
+      <FlipCard title={aboutCompany[0].title} desc={aboutCompany[0].desc}>
+        <img src={about1.src} alt="left" width="600" />
+      </FlipCard>
+      <FlipCard
+        title={principles[0].title}
+        desc={principles[0].desc}
+        variant="card-front-2"
+      >
+        <img src={values1.src} alt="left" width="600" />
+      </FlipCard>
     </div>
+    <div class="card">
+      <div class="card-front overflow-hidden">
+        <Image
+          class="object-cover aspect-4/6"
+          src={ImgMid}
+          alt="left"
+          width={800}
+        />
+      </div>
+      <FlipCard title={aboutCompany[1].title} desc={aboutCompany[1].desc}>
+        <img src={about2.src} alt="left" width="600" />
+      </FlipCard>
+      <FlipCard
+        title={principles[1].title}
+        desc={principles[1].desc}
+        variant="card-front-2"
+      >
+        <img src={values2.src} alt="left" width="600" />
+      </FlipCard>
+    </div>
+    <div class="card">
+      <div
+        class="card-front overflow-hidden rounded-tr-xl rounded-br-xl -ml-px"
+      >
+        <Image
+          class="object-cover aspect-4/6"
+          src={ImgRight}
+          alt="left"
+          width={800}
+        />
+      </div>
+      <FlipCard title={aboutCompany[2].title} desc={aboutCompany[2].desc}>
+        <img src={about3.src} alt="left" width="600" />
+      </FlipCard>
+      <FlipCard
+        title={principles[2].title}
+        desc={principles[2].desc}
+        variant="card-front-2"
+      >
+        <img src={values3.src} alt="left" width="600" />
+      </FlipCard>
+    </div>
+  </div>
 </section>
 
 <script>
-    import { gsap } from 'gsap';
-    import { ScrollTrigger } from "gsap/ScrollTrigger";
-    import { SplitText } from "gsap/SplitText";
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import { SplitText } from "gsap/SplitText";
 
-    gsap.registerPlugin(ScrollTrigger, SplitText);
+  gsap.registerPlugin(ScrollTrigger, SplitText);
 
-    let tl = gsap.timeline({
-        scrollTrigger: {
-            trigger: '.scroll-container',
-            start: '15% top',
-            end: 'bottom bottom',
-            scrub: true,
-        }
+  let tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".scroll-container",
+      start: "15% top",
+      end: "bottom bottom",
+      scrub: true,
+    },
+  });
+
+  let headlineOneSplit = SplitText.create(".headline-one", {
+    type: "lines, words",
+    mask: "lines",
+  });
+
+  let headlineTwoSplit = SplitText.create(".headline-two", {
+    type: "lines, words",
+    mask: "lines",
+  });
+
+  let splitCardsTl = gsap.timeline();
+  splitCardsTl.to(".cards-grid", {
+    gap: "40px",
+    height: "60vh",
+    y: 200,
+    // padding: '15vw 0vw 0vw 0vw',
+  });
+
+  let backCardsTl = gsap.timeline();
+  backCardsTl
+    .from(headlineOneSplit.words, {
+      y: 200,
+      stagger: 0.025,
     })
-
-    let headlineOneSplit = SplitText.create('.headline-one', { 
-        type: "lines, words",
-        mask: "lines",
-    });
-
-    let headlineTwoSplit = SplitText.create('.headline-two', { 
-        type: "lines, words",
-        mask: "lines",
-    });
-
-    let splitCardsTl = gsap.timeline();
-    splitCardsTl.to('.cards-grid', {
-        gap: '40px',
-        height: '60vh',
-        y: 200,
-        // padding: '15vw 0vw 0vw 0vw',
-    })
-
-    let backCardsTl = gsap.timeline();
-    backCardsTl.from(headlineOneSplit.words, {
-        y: 200,
-        stagger: 0.025,
-    })
-    .to('.card', {
+    .to(
+      ".card",
+      {
         transformPerspective: 1000,
-        rotationY: 180,     
+        rotationY: 180,
         stagger: 0.05,
         onComplete: () => {
-            gsap.set('.card-front', {display: "none"})
-            gsap.set('.card-front-2', {display: "block"})
+          gsap.set(".card-front", { display: "none" });
+          gsap.set(".card-front-2", { display: "block" });
         },
         onUpdate: () => {
-            gsap.set('.card-front', {display: "block"})
-            gsap.set('.card-front-2', {display: "none"})
-        }
-    }, "<")
-    .to(headlineOneSplit.words, {
+          gsap.set(".card-front", { display: "block" });
+          gsap.set(".card-front-2", { display: "none" });
+        },
+      },
+      "<",
+    )
+    .to(
+      headlineOneSplit.words,
+      {
         y: 200,
         stagger: 0.025,
-    }, ">5")
+      },
+      ">5",
+    );
 
-    let frontCardsTl = gsap.timeline();
-    frontCardsTl.to('.card', {
-        rotationY: 360,
-        stagger: 0.05,
+  let frontCardsTl = gsap.timeline();
+  frontCardsTl
+    .to(".card", {
+      rotationY: 360,
+      stagger: 0.05,
     })
-    .from(headlineTwoSplit.words, {
+    .from(
+      headlineTwoSplit.words,
+      {
         y: 200,
         stagger: 0.025,
-    }, ">")
-    
-    gsap.from(".cards-grid", {
-        scale: 2.5,
-        duration: 2,
-    })
+      },
+      ">",
+    );
 
-    // Split img into cards
-    tl.add(splitCardsTl)
-    .add(backCardsTl)
-    .add(frontCardsTl, ">-1")
-    
-    
+  gsap.from(".cards-grid", {
+    scale: 2.5,
+    duration: 2,
+  });
+
+  // Split img into cards
+  tl.add(splitCardsTl).add(backCardsTl).add(frontCardsTl, ">-1");
 </script>
 
 <style>
-    .card {
-        height: 100%;
-        width: 100%;
-        position: relative;
-        transform-style: preserve-3d;
-        transform: perspective(1000px) rotate3d(0, 0, 0, 0deg);
-    }
+  .card {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: perspective(1000px) rotate3d(0, 0, 0, 0deg);
+  }
 
-    .card-front {
-        width: 100%;
-        height: auto;
-        backface-visibility: hidden;
-        position: absolute;
-        transform: rotateY(0deg);
-    }
+  .card-front {
+    width: 100%;
+    height: auto;
+    backface-visibility: hidden;
+    position: absolute;
+    transform: rotateY(0deg);
+  }
 
-    .cards-grid {
-        height: 80vh;
-        width: 80vw;
-        margin: auto;
-    }
+  .cards-grid {
+    height: 80vh;
+    width: 80vw;
+    margin: auto;
+  }
 </style>
