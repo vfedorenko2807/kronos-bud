@@ -1,7 +1,8 @@
 {
   "name": "kronos-bud",
   "compatibility_date": "2026-07-22",
-  "images": {
-    "binding": "IMAGES"
+  "assets": {
+    "binding": "ASSETS",
+    "directory": "./dist"
   }
 }
