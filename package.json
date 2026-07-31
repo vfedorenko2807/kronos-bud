@@ -13,9 +13,9 @@
     "generate-types": "wrangler types"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^14.1.4",
+    "@astrojs/cloudflare": "^14.1.7",
     "@tailwindcss/vite": "^4.3.0",
-    "astro": "^7.0.7",
+    "astro": "^7.1.6",
     "gsap": "^3.15.0",
     "tailwindcss": "^4.3.0"
   },
