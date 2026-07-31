@@ -52,11 +52,7 @@
 
     const tl = gsap.timeline()
 
-    tl.from(".parent", {
-        height: 0,
-        duration: 2,
-        delay: 1,
-    })
+    tl.add(gsap.delayedCall(3, () => {}))
     .from(splitLineOne.chars, {
         y: 300,
         stagger: 0.05,

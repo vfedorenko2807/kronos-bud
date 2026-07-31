@@ -44,7 +44,7 @@ const principles = [
 ];
 ---
 
-<section class="scroll-container w-screen h-[900vh] mb-80">
+<section class="scroll-container w-screen h-[300vh] mb-80">
   <div class="cards-grid sticky top-32 grid grid-cols-3 gap-0 po">
     <h2
       class="headline-one absolute -top-48 font-heading font-bold left-1/2 -translate-x-1/2 text-center text-[4rem] leading-[110%] w-[60vw]"
@@ -130,14 +130,22 @@ const principles = [
 
   gsap.registerPlugin(ScrollTrigger, SplitText);
 
-  let tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".scroll-container",
-      start: "15% top",
-      end: "bottom bottom",
-      scrub: true,
-    },
-  });
+  // gsap.set(".cards-grid", {
+  //   scale: 2.5,
+  // })
+
+  // gsap.delayedCall(1, () => {
+  //   gsap.to(".cards-grid", {
+  //     scale: 1,
+  //     duration: 2,
+  //     onComplete: () => ScrollTrigger.refresh(),
+  //   });
+
+  //   gsap.from(".scroll-container", {
+  //     y: 0,
+  //     duration: 2,
+  //   });
+  // });
 
   let headlineOneSplit = SplitText.create(".headline-one", {
     type: "lines, words",
@@ -149,15 +157,56 @@ const principles = [
     mask: "lines",
   });
 
-  let splitCardsTl = gsap.timeline();
+
+  let splitCardsTl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".scroll-container",
+      toggleActions: "restart complete reverse none",
+      start: "20% center",
+      end: "35% center",
+      markers: true,
+    },
+  });
+
+  let backCardsTl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".scroll-container",
+      toggleActions: "restart complete reverse none",
+      start: "40% center",
+      end: "60% center",
+      markers: true,
+      onToggle: (self) => {
+        if(self.progress === 0){
+          gsap.set(".card-front", { display: "block" });
+          gsap.set(".card-front-2", { display: "none" });
+          backCardsTl.reverse()
+        }
+      },
+    },
+  });
+
+  let frontCardsTl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".scroll-container",
+      toggleActions: "restart complete reverse none",
+      start: "65% center",
+      end: "90% center",
+      markers: true,
+      onToggle: (self) => {
+        if(self.progress === 0){
+          frontCardsTl.reverse()
+        }
+      },
+    },
+  });
+
   splitCardsTl.to(".cards-grid", {
     gap: "40px",
     height: "60vh",
+    duration: 1,
     y: 200,
-    // padding: '15vw 0vw 0vw 0vw',
   });
 
-  let backCardsTl = gsap.timeline();
   backCardsTl
     .from(headlineOneSplit.words, {
       y: 200,
@@ -179,18 +228,14 @@ const principles = [
         },
       },
       "<",
-    )
-    .to(
-      headlineOneSplit.words,
+    );
+
+  frontCardsTl
+    .to(headlineOneSplit.words,
       {
         y: 200,
         stagger: 0.025,
-      },
-      ">5",
-    );
-
-  let frontCardsTl = gsap.timeline();
-  frontCardsTl
+      })
     .to(".card", {
       rotationY: 360,
       stagger: 0.05,
@@ -201,16 +246,8 @@ const principles = [
         y: 200,
         stagger: 0.025,
       },
-      ">",
+      "<",
     );
-
-  gsap.from(".cards-grid", {
-    scale: 2.5,
-    duration: 2,
-  });
-
-  // Split img into cards
-  tl.add(splitCardsTl).add(backCardsTl).add(frontCardsTl, ">-1");
 </script>
 
 <style>
