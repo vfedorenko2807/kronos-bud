@@ -44,8 +44,8 @@ const principles = [
 ];
 ---
 
-<section class="scroll-container w-screen h-[900vh] mb-80">
-  <div class="cards-grid sticky top-32 grid grid-cols-3 gap-0 po">
+<section class="scroll-container w-screen h-[400vh] border border-purple-600">
+  <div class="cards-grid grid grid-cols-3 gap-0">
     <h2
       class="headline-one absolute -top-48 font-heading font-bold left-1/2 -translate-x-1/2 text-center text-[4rem] leading-[110%] w-[60vw]"
     >
@@ -133,9 +133,12 @@ const principles = [
   let tl = gsap.timeline({
     scrollTrigger: {
       trigger: ".scroll-container",
-      start: "15% top",
-      end: "bottom bottom",
+      start: "-320px top",
+      end: "95% bottom",
       scrub: true,
+      markers: true,
+      pin: ".cards-grid",
+      pinSpacing: true,
     },
   });
 
@@ -153,8 +156,7 @@ const principles = [
   splitCardsTl.to(".cards-grid", {
     gap: "40px",
     height: "60vh",
-    y: 200,
-    // padding: '15vw 0vw 0vw 0vw',
+    // y: 100,
   });
 
   let backCardsTl = gsap.timeline();
@@ -162,6 +164,7 @@ const principles = [
     .from(headlineOneSplit.words, {
       y: 200,
       stagger: 0.025,
+      duration: 1,
     })
     .to(
       ".card",
@@ -169,6 +172,7 @@ const principles = [
         transformPerspective: 1000,
         rotationY: 180,
         stagger: 0.05,
+        duration: 3,
         onComplete: () => {
           gsap.set(".card-front", { display: "none" });
           gsap.set(".card-front-2", { display: "block" });
@@ -185,23 +189,25 @@ const principles = [
       {
         y: 200,
         stagger: 0.025,
-      },
-      ">5",
+        duration: 1,
+      }
     );
 
   let frontCardsTl = gsap.timeline();
   frontCardsTl
-    .to(".card", {
-      rotationY: 360,
-      stagger: 0.05,
+    .from(headlineTwoSplit.words, {
+      y: 200,
+      stagger: 0.025,
+      duration: 1,
     })
-    .from(
-      headlineTwoSplit.words,
+    .to(
+      ".card",
       {
-        y: 200,
-        stagger: 0.025,
+        rotationY: 360,
+        stagger: 0.05,
+        duration: 3,
       },
-      ">",
+      "<",
     );
 
   gsap.from(".cards-grid", {
@@ -209,8 +215,12 @@ const principles = [
     duration: 2,
   });
 
+  splitCardsTl.duration(1);
+  backCardsTl.duration(6);
+  frontCardsTl.duration(4);
+
   // Split img into cards
-  tl.add(splitCardsTl).add(backCardsTl).add(frontCardsTl, ">-1");
+  tl.add(splitCardsTl).add(backCardsTl).add(frontCardsTl);
 </script>
 
 <style>
@@ -231,6 +241,7 @@ const principles = [
   }
 
   .cards-grid {
+    position: relative;
     height: 80vh;
     width: 80vw;
     margin: auto;

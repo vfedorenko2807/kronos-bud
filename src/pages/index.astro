@@ -21,13 +21,18 @@ import Loading from "../components/sections/Loading.astro";
 		<title>Astro</title>
 	</head>
 	<body class="bg-light-blue">
+		<section id="scroll-wrapper">
+			<section id="scroll-content">
+				<Hero />
+				<About />
+				<Services />
+				<Projects />
+				<Contact />
+			</section>
+		</section>
+
 		<Loading />
 		<Nav/>
-		<Hero />
-		<About />
-		<Services />
-		<Projects />
-		<Contact />
 	</body>
 </html>
 
@@ -36,11 +41,13 @@ import Loading from "../components/sections/Loading.astro";
 	setInterval(() => {
 		document.body.classList.remove('no-scroll');
 	}, 2500)
-</script>
 
-<style>
-	.no-scroll {
-		overflow: hidden;
-		height: 100vh; /* Keeps the viewport locked to the current window height */
-		}
-</style>
+	import { gsap, ScrollTrigger, ScrollSmoother } from "gsap/all";
+
+	gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
+	let smoother = ScrollSmoother.create({
+		wrapper: "#scroll-wrapper",
+		content: "#scroll-content",
+	});
+</script>
