@@ -9,10 +9,10 @@ import Logo from "../assets/kronos-lider-horizontal-logo.svg"
         width="160d"
         />
     <div class="text-stale-900 flex gap-8">
-        <a href="">Про нас</a>
-        <a href="">Цінності</a>
-        <a href="">Проекти</a>
-        <a href="">Контакт</a>
+        <button id="about-btn">Про нас</button>
+        <button id="services-btn">Послуги</button>
+        <button id="projects-btn">Проекти</button>
+        <button id="contact-btn">Контакт</button>
     </div>
 
     <button class="bg-orange-600 text-white uppercase py-2 px-4 rounded-lg">
@@ -21,11 +21,68 @@ import Logo from "../assets/kronos-lider-horizontal-logo.svg"
 </nav>
 
 <script>
-    import { gsap } from 'gsap';
+    import { gsap, ScrollToPlugin } from 'gsap/all';
+    gsap.registerPlugin(ScrollToPlugin)
 
     gsap.from("nav", {
         y: -400,
-        delay: 1,
+        delay: .5,
         duration: 2,
     })
+
+    const aboutBtn = document.querySelector("#about-btn");
+    aboutBtn?.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const smoother = (window as any).__kronosSmoother;
+        if (smoother) {
+            gsap.to(window, {
+                duration: 2,
+                ease: "power2.inOut",
+                scrollTo: { y: smoother.offset("#hero", "top top") }
+            });
+        }
+    });
+
+    const servicesBtn = document.querySelector("#services-btn");
+    servicesBtn?.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const smoother = (window as any).__kronosSmoother;
+        if (smoother) {
+            gsap.to(window, {
+                duration: 2,
+                ease: "power2.inOut",
+                scrollTo: { y: smoother.offset("#services", "top top") }
+            });
+        }
+    });
+
+    const projectsBtn = document.querySelector("#projects-btn");
+    projectsBtn?.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const smoother = (window as any).__kronosSmoother;
+        if (smoother) {
+            gsap.to(window, {
+                duration: 2,
+                ease: "power2.inOut",
+                scrollTo: { y: smoother.offset("#projects", "top top") }
+            });
+        }
+    });
+
+    const contactBtn = document.querySelector("#contact-btn");
+    contactBtn?.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const smoother = (window as any).__kronosSmoother;
+        if (smoother) {
+            gsap.to(window, {
+                duration: 2,
+                ease: "power2.inOut",
+                scrollTo: { y: smoother.offset("#contact", "top top") }
+            });
+        }
+    });
 </script>

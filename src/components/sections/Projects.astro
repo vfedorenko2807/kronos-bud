@@ -9,16 +9,16 @@ const projects = [
 ]
 ---
 
-<section class="w-screen h-screen p-40">
+<section class="w-screen h-screen p-40" id="projects">
     <h2 class="text-[4rem] font-bold text-center w-full mb-12">Проекти</h2>
 
     <div class="flex gap-8 h-100 w-full pointer-effect-none">
-        <div id="project-1" class="flex flex-col gap-2">
+        <div id="project-1" class="flex flex-col gap-2 z-50">
             <Image class="rounded-xl h-100 object-cover" width={1600} src={projectImg1} alt={projects[0].title}/>
             <h3 class="font-semibold text-2xl">{projects[0].title}</h3>
             <p class="project-desc-1">{projects[0].desc}</p>
         </div>
-        <div id="project-2" class="flex flex-col gap-2">
+        <div id="project-2" class="flex flex-col gap-2 z-50">
             <Image class="rounded-xl h-100 object-cover" width={1600} src={projectImg2} alt={projects[1].title}/>
             <h3 class="font-semibold text-2xl">{projects[1].title}</h3>
             <p class="project-desc-2">{projects[1].desc}</p>

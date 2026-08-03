@@ -7,7 +7,7 @@ import ServiceFour from "../../assets/service-4.png";
 
 const services = [
   {
-    title: "Житлові, комерційні та промислові об’єкти",
+    title: "Житлова та комерційна нерухомість",
     desc: "Від нового будівництва до реконструкції, модернізації та капітального ремонту існуючих споруд.",
   },
   {
@@ -25,7 +25,7 @@ const services = [
 ];
 ---
 
-<section class="services-scroll w-screen h-[600vh] border border-red-500">
+<section class="services-scroll w-screen h-[600vh]" id="services">
   <div class="services-grid w-screen h-screen grid grid-cols-2">
     <div class="relative bg-white">
       <p class="absolute top-80 left-32 uppercase text-gray-600 mb-2">
@@ -38,7 +38,7 @@ const services = [
         >
           {services[0].title}
         </h2>
-        <p class="desc-one text-xl pr-32">{services[0].desc}</p>
+        <p class="desc-one text-xl pr-48">{services[0].desc}</p>
       </div>
 
       <div class="absolute top-1/2 -translate-y-1/2 left-32 w-[700px]">
@@ -142,13 +142,13 @@ const services = [
       scrub: true,
       pin: true,
       pinSpacing: false,
-      markers: true,
     },
   });
 
   // slide 1
-  let slideOneTl = gsap.timeline();
-  slideOneTl
+
+  tl
+    .to(".pause", {}, "+=2")
     .to(titleOneSplit.lines, {
       y: -200,
       stagger: 0.025,
@@ -170,11 +170,10 @@ const services = [
         duration: 1,
       },
       "<",
-    );
+    )
 
   // slide 2
-  let slideTwoTl = gsap.timeline();
-  slideTwoTl
+
     .from(
       titleTwoSplit.lines,
       {
@@ -191,7 +190,7 @@ const services = [
       },
       "<",
     )
-    .to(".pause", {}, "+=1")
+    .to(".pause", {}, "+=2")
     .to(titleTwoSplit.lines, {
       y: -200,
       stagger: 0.025,
@@ -213,11 +212,10 @@ const services = [
         duration: 1,
       },
       "<",
-    );
+    )
 
   // slide 3
-  let slideThreeTl = gsap.timeline();
-  slideThreeTl
+
     .from(
       titleThreeSplit.lines,
       {
@@ -232,10 +230,10 @@ const services = [
         stagger: 0.025,
         duration: 1,
       },
-      "<.2",
+      "<",
     )
-    .to(".pause", {}, "+=1")
-    .to(titleThreeSplit.lines, {
+    .to(".pause", {}, "+=2")
+       .to(titleThreeSplit.lines, {
       y: -200,
       stagger: 0.025,
       duration: 1,
@@ -245,22 +243,21 @@ const services = [
       {
         y: -200,
         stagger: 0.025,
-        duration: 2,
-      },
-      "<.2",
-    )
-    .to(
-      ".img-three",
-      {
-        height: "0%",
-        duration: 2,
+        duration: 1,
       },
       "<",
-    );
+    )
+    .to(
+      ".img-two",
+      {
+        height: "0%",
+        duration: 1,
+      },
+      "<",
+    )
 
   // slide 4
-  let slideFourTl = gsap.timeline();
-  slideFourTl
+
     .from(
       titleFourSplit.lines,
       {
@@ -277,12 +274,4 @@ const services = [
       },
       "<",
     );
-
-  slideOneTl.duration(1);
-  slideTwoTl.duration(4);
-  slideThreeTl.duration(4);
-  slideFourTl.duration(1);
-
-  //Master timeline
-  tl.add(slideOneTl).add(slideTwoTl).add(slideThreeTl).add(slideFourTl);
 </script>

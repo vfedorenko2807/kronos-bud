@@ -44,7 +44,7 @@ const principles = [
 ];
 ---
 
-<section class="scroll-container w-screen h-[400vh] border border-purple-600">
+<section class="scroll-container w-screen h-[400vh]" id="about">
   <div class="cards-grid grid grid-cols-3 gap-0">
     <h2
       class="headline-one absolute -top-48 font-heading font-bold left-1/2 -translate-x-1/2 text-center text-[4rem] leading-[110%] w-[60vw]"
@@ -136,7 +136,6 @@ const principles = [
       start: "-320px top",
       end: "95% bottom",
       scrub: true,
-      markers: true,
       pin: ".cards-grid",
       pinSpacing: true,
     },
@@ -156,7 +155,6 @@ const principles = [
   splitCardsTl.to(".cards-grid", {
     gap: "40px",
     height: "60vh",
-    // y: 100,
   });
 
   let backCardsTl = gsap.timeline();
@@ -211,9 +209,10 @@ const principles = [
     );
 
   gsap.from(".cards-grid", {
-    scale: 2.5,
+    y: -400,
+    delay: 1,
     duration: 2,
-  });
+  })
 
   splitCardsTl.duration(1);
   backCardsTl.duration(6);

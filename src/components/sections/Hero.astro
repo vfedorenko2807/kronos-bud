@@ -1,7 +1,7 @@
 ---
 ---
 
-<section class="parent w-screen pt-[104px] pb-[64px] grid place-items-center relative overflow-x-clip">
+<section id="hero" class="parent w-screen pt-[104px] pb-[64px] grid place-items-center relative overflow-x-clip">
     <div class="m-auto w-[80vw] flex flex-col gap-0 text-stale-900">
         <h1 class="line-1 hero-text font-heading leading-[90%] uppercase self-start">Створюємо</h1>
         <h1 class="line-2 hero-text font-heading leading-[90%] uppercase self-start">інфраструктуру</h1>
@@ -52,26 +52,22 @@
 
     const tl = gsap.timeline()
 
-    // tl.from(".parent", {
-    //     height: 0,
-    //     duration: 2,
-    //     delay: 1,
-    // })
-    // .from(splitLineOne.chars, {
-    //     y: 300,
-    //     stagger: 0.05,
-    // }, "<")
-    // .from(splitLineTwo.chars, {
-    //     y: 300,
-    //     stagger: 0.05,
-    // }, "<.5")
-    // .from(splitLineThree.chars, {
-    //     y: 300,
-    //     stagger: 0.05,
-    // }, "<.5")
-    // .from(splitLineFour.chars, {
-    //     y: 300,
-    //     stagger: 0.05,
-    // }, "<.5")
+    tl
+    .from(splitLineOne.chars, {
+        y: 300,
+        stagger: 0.05,
+    }, ">1")
+    .from(splitLineTwo.chars, {
+        y: 300,
+        stagger: 0.05,
+    }, "<.5")
+    .from(splitLineThree.chars, {
+        y: 300,
+        stagger: 0.05,
+    }, "<.5")
+    .from(splitLineFour.chars, {
+        y: 300,
+        stagger: 0.05,
+    }, "<.5")
 
 </script>
