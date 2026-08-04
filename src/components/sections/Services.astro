@@ -28,11 +28,12 @@ const services = [
 <section class="services-scroll w-screen h-[600vh]" id="services">
   <div class="services-grid w-screen h-screen grid grid-cols-2">
     <div class="relative bg-white">
-      <p class="absolute top-80 left-32 uppercase text-gray-600 mb-2">
-        Наші послуги
-      </p>
+      
 
       <div class="absolute top-1/2 -translate-y-1/2 left-32 w-[700px]">
+        <p class="uppercase text-gray-600 mb-4">
+          Наші послуги
+        </p>
         <h2
           class="title-one text-[4rem] font-heading font-bold uppercase leading-[1] mb-4"
         >
@@ -148,130 +149,76 @@ const services = [
   // slide 1
 
   tl
-    .to(".pause", {}, "+=2")
+    .to(".pause", {}, "+=.5")
     .to(titleOneSplit.lines, {
       y: -200,
-      stagger: 0.025,
       duration: 1,
     })
-    .to(
-      descOneSplit.lines,
-      {
-        y: -200,
-        stagger: 0.025,
-        duration: 1,
-      },
-      "<",
-    )
-    .to(
-      ".img-one",
-      {
-        height: "0%",
-        duration: 1,
-      },
-      "<",
-    )
+    .to(descOneSplit.lines, {
+      y: -200,
+      duration: 1,
+    }, "<")
+    .to(".img-one", {
+      height: "0%",
+      duration: 1,
+    }, "<")
 
   // slide 2
 
-    .from(
-      titleTwoSplit.lines,
-      {
-        y: 200,
-        stagger: 0.025,
-        duration: 1,
-      })
-    .from(
-      descTwoSplit.lines,
-      {
-        y: 200,
-        stagger: 0.025,
-        duration: 1,
-      },
-      "<",
-    )
-    .to(".pause", {}, "+=2")
-    .to(titleTwoSplit.lines, {
-      y: -200,
-      stagger: 0.025,
+    .from(titleTwoSplit.lines, {
+      y: 200,
       duration: 1,
     })
-    .to(
-      descTwoSplit.lines,
-      {
-        y: -200,
-        stagger: 0.025,
-        duration: 1,
-      },
-      "<",
-    )
-    .to(
-      ".img-two",
-      {
-        height: "0%",
-        duration: 1,
-      },
-      "<",
-    )
+    .from(descTwoSplit.lines, {
+      y: 200,
+      duration: 1,
+    }, "<")
+    .to(".pause", {}, "+=.5")
+    .to(titleTwoSplit.lines, {
+      y: -200,
+      duration: 1,
+    })
+    .to(descTwoSplit.lines, {
+      y: -200,
+      duration: 1,
+    }, "<")
+    .to(".img-two", {
+      height: "0%",
+      duration: 1,
+    }, "<")
 
   // slide 3
 
-    .from(
-      titleThreeSplit.lines,
-      {
-        y: 200,
-        stagger: 0.025,
-        duration: 1,
-      })
-    .from(
-      descThreeSplit.lines,
-      {
-        y: 200,
-        stagger: 0.025,
-        duration: 1,
-      },
-      "<",
-    )
-    .to(".pause", {}, "+=2")
-       .to(titleThreeSplit.lines, {
-      y: -200,
-      stagger: 0.025,
+    .from(titleThreeSplit.lines, {
+      y: 200,
       duration: 1,
     })
-    .to(
-      descThreeSplit.lines,
-      {
-        y: -200,
-        stagger: 0.025,
-        duration: 1,
-      },
-      "<",
-    )
-    .to(
-      ".img-two",
-      {
-        height: "0%",
-        duration: 1,
-      },
-      "<",
-    )
+    .from(descThreeSplit.lines, {
+      y: 200,
+      duration: 1,
+    }, "<")
+    .to(".pause", {}, "+=.5")
+    .to(titleThreeSplit.lines, {
+      y: -200,
+      duration: 1,
+    })
+    .to(descThreeSplit.lines,{
+      y: -200,
+      duration: 1,
+    },"<")
+    .to(".img-three", {
+      height: "0%",
+      duration: 1,
+    }, "<")
 
   // slide 4
 
-    .from(
-      titleFourSplit.lines,
-      {
-        y: 200,
-        stagger: 0.025,
-        duration: 1,
-      })
-    .from(
-      descFourSplit.lines,
-      {
-        y: 200,
-        stagger: 0.025,
-        duration: 1,
-      },
-      "<",
-    );
+    .from(titleFourSplit.lines, {
+      y: 200,
+      duration: 1,
+    })
+    .from(descFourSplit.lines, {
+      y: 200,
+      duration: 1,
+    }, "<");
 </script>
