@@ -9,10 +9,6 @@ import about1 from "../../assets/about-1.svg";
 import about2 from "../../assets/about-2.svg";
 import about3 from "../../assets/about-3.svg";
 
-import values1 from "../../assets/values-1.svg";
-import values2 from "../../assets/values-2.svg";
-import values3 from "../../assets/values-3.svg";
-
 const aboutCompany = [
   {
     title: "13+ років на ринку",
@@ -27,21 +23,6 @@ const aboutCompany = [
     desc: "Ліцензії для будування великих проєктів",
   },
 ];
-
-const principles = [
-  {
-    title: "Надійність",
-    desc: "Багаторічний досвід та партнерські відносини є основою нашої репутації.",
-  },
-  {
-    title: "Якість та безпека",
-    desc: "Ми контролюємо кожен етап робіт та використовуємо сучасні технології будівництва.",
-  },
-  {
-    title: "Інноваційність",
-    desc: "Поєднуємо інженерний досвід із сучасними архітектурними рішеннями та технологіями будівництва.",
-  },
-];
 ---
 
 <section class="scroll-container w-screen h-[400vh]" id="about">
@@ -50,12 +31,6 @@ const principles = [
       class="headline-one absolute -top-48 font-heading font-bold left-1/2 -translate-x-1/2 text-center text-[4rem] leading-[110%] w-[60vw]"
     >
       Ми будівельна компанія повного циклу
-    </h2>
-    <h2
-      class="headline-two absolute -top-48 font-heading font-bold left-1/2 -translate-x-1/2 text-center text-[3rem] leading-[110%] w-[60vw]"
-    >
-      Ці 3 приниципи показують як ми працюємо і чому наші партнери залишаються з
-      нами
     </h2>
 
     <div class="card">
@@ -70,13 +45,6 @@ const principles = [
       <FlipCard title={aboutCompany[0].title} desc={aboutCompany[0].desc}>
         <img src={about1.src} alt="left" width="600" />
       </FlipCard>
-      <FlipCard
-        title={principles[0].title}
-        desc={principles[0].desc}
-        variant="card-front-2"
-      >
-        <img src={values1.src} alt="left" width="600" />
-      </FlipCard>
     </div>
     <div class="card">
       <div class="card-front overflow-hidden">
@@ -89,13 +57,6 @@ const principles = [
       </div>
       <FlipCard title={aboutCompany[1].title} desc={aboutCompany[1].desc}>
         <img src={about2.src} alt="left" width="600" />
-      </FlipCard>
-      <FlipCard
-        title={principles[1].title}
-        desc={principles[1].desc}
-        variant="card-front-2"
-      >
-        <img src={values2.src} alt="left" width="600" />
       </FlipCard>
     </div>
     <div class="card">
@@ -112,18 +73,25 @@ const principles = [
       <FlipCard title={aboutCompany[2].title} desc={aboutCompany[2].desc}>
         <img src={about3.src} alt="left" width="600" />
       </FlipCard>
-      <FlipCard
-        title={principles[2].title}
-        desc={principles[2].desc}
-        variant="card-front-2"
-      >
-        <img src={values3.src} alt="left" width="600" />
-      </FlipCard>
     </div>
   </div>
 </section>
 
 <script>
+  function initAboutAnimation() {
+    ScrollTrigger.getAll().forEach((st) => st.kill());
+    // create timelines here
+    ScrollTrigger.refresh();
+  }
+
+  if (document.readyState === "loading") {
+    window.addEventListener("DOMContentLoaded", initAboutAnimation, { once: true });
+  } else {
+    initAboutAnimation();
+  }
+
+  window.addEventListener("load", () => ScrollTrigger.refresh(), { once: true });
+
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
   import { SplitText } from "gsap/SplitText";
@@ -146,80 +114,22 @@ const principles = [
     mask: "lines",
   });
 
-  let headlineTwoSplit = SplitText.create(".headline-two", {
-    type: "lines, words",
-    mask: "lines",
-  });
-
-  let splitCardsTl = gsap.timeline();
-  splitCardsTl.to(".cards-grid", {
+  tl.to(".cards-grid", {
     gap: "40px",
     height: "60vh",
-  });
-
-  let backCardsTl = gsap.timeline();
-  backCardsTl
+  })
     .from(headlineOneSplit.words, {
       y: 200,
       stagger: 0.025,
       duration: 1,
     })
-    .to(
-      ".card",
-      {
-        transformPerspective: 1000,
-        rotationY: 180,
-        stagger: 0.05,
-        duration: 3,
-        onComplete: () => {
-          gsap.set(".card-front", { display: "none" });
-          gsap.set(".card-front-2", { display: "block" });
-        },
-        onUpdate: () => {
-          gsap.set(".card-front", { display: "block" });
-          gsap.set(".card-front-2", { display: "none" });
-        },
-      },
-      "<",
-    )
-    .to(
-      headlineOneSplit.words,
-      {
-        y: 200,
-        stagger: 0.025,
-        duration: 1,
-      }
-    );
-
-  let frontCardsTl = gsap.timeline();
-  frontCardsTl
-    .from(headlineTwoSplit.words, {
-      y: 200,
-      stagger: 0.025,
-      duration: 1,
+    .to(".card", {
+      transformPerspective: 1000,
+      rotationY: 180,
+      stagger: 0.05,
+      duration: 3,
     })
-    .to(
-      ".card",
-      {
-        rotationY: 360,
-        stagger: 0.05,
-        duration: 3,
-      },
-      "<",
-    );
 
-  gsap.from(".cards-grid", {
-    y: -400,
-    delay: 1,
-    duration: 2,
-  })
-
-  splitCardsTl.duration(1);
-  backCardsTl.duration(6);
-  frontCardsTl.duration(4);
-
-  // Split img into cards
-  tl.add(splitCardsTl).add(backCardsTl).add(frontCardsTl);
 </script>
 
 <style>

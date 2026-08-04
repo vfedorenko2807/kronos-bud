@@ -1,0 +1,117 @@
+---
+import FlipCard from "../FlipCard.astro";
+
+import values1 from "../../assets/values-1.svg";
+import values2 from "../../assets/values-2.svg";
+import values3 from "../../assets/values-3.svg";
+
+const principles = [
+  {
+    title: "Надійність",
+    desc: "Багаторічний досвід та партнерські відносини є основою нашої репутації.",
+  },
+  {
+    title: "Якість та безпека",
+    desc: "Ми контролюємо кожен етап робіт та використовуємо сучасні технології будівництва.",
+  },
+  {
+    title: "Інноваційність",
+    desc: "Поєднуємо інженерний досвід із сучасними архітектурними рішеннями та технологіями будівництва.",
+  },
+];
+---
+
+<section class="w-screen h-screen" id="values">
+  <div class="values-grid grid grid-cols-3 gap-0 h-[500px]">
+    <h2
+      class="values-headline absolute font-heading font-bold left-1/2 -translate-x-1/2 text-center text-[3rem] leading-[110%] w-[60vw]"
+    >
+      Ці 3 приниципи показують як ми працюємо і чому наші партнери залишаються з
+      нами
+    </h2>
+
+    <div data-speed="1" class="values-card">
+      <FlipCard
+        title={principles[0].title}
+        desc={principles[0].desc}
+        variant="none"
+      >
+        <img src={values1.src} alt="left" width="600" />
+      </FlipCard>
+    </div>
+
+    <div data-speed="1.5" class="values-card ">
+      <FlipCard
+        title={principles[1].title}
+        desc={principles[1].desc}
+        variant="card-front-2"
+      >
+        <img src={values2.src} alt="left" width="600" />
+      </FlipCard>
+    </div>
+
+    <div data-speed="2" class="values-card ">
+      <FlipCard
+        title={principles[2].title}
+        desc={principles[2].desc}
+        variant="card-front-2"
+      >
+        <img src={values3.src} alt="left" width="600" />
+      </FlipCard>
+    </div>
+  </div>
+</section>
+
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    import { SplitText } from "gsap/SplitText";
+
+    gsap.registerPlugin(ScrollTrigger, SplitText);
+
+    let headlineSplit = SplitText.create(".values-headline", {
+        type: "lines, words",
+        mask: "lines",
+    });
+
+    gsap.from(headlineSplit.words,{
+        y: 200,
+        stagger: 0.025,
+        scrollTrigger: {
+            trigger: "#values",
+            start: "top center",
+            end: "30% center",
+            scrub: true,
+        },
+    });
+
+
+</script>
+
+<style>
+  .values-card {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: perspective(1000px) rotate3d(0, 0, 0, 0deg);
+    height: 60vh;
+  }
+
+  .card-front {
+    width: 100%;
+    height: auto;
+    backface-visibility: hidden;
+    position: absolute;
+    transform: rotateY(0deg);
+  }
+
+  .values-grid {
+    position: relative;
+    place-content: center;
+    height: 100%;
+    width: 80vw;
+    gap: 40px;
+    margin: auto;
+  }
+</style>

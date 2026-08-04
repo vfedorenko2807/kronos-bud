@@ -6,12 +6,12 @@ let {
 } : {
     title?: string,
     desc?:string,
-    variant?: "card-back" | "card-front-2",
+    variant?: "card-back" | "none",
 } = Astro.props
 ---
 
 
-<div class:list={["p-8 aspect-4/6", variant]}> 
+<div class:list={["p-8 aspect-4/6 main-card", variant]}> 
     <h3 class="text-2xl font-bold mb-3">{title}</h3>
     <p class="text-lg">{desc}</p>
     <div class="grid place-content-center h-full">
@@ -21,29 +21,21 @@ let {
 
 <style>
     .card-back {
-        height: 100%;
-        width: 100%;
-        backface-visibility: hidden;
-        position: absolute;
         transform: rotateY(180deg);
-        background: #fff;
-        color: #000;
-        border-radius: 12px;
-        overflow: hidden;
+        position: absolute;
     }
 
-    .card-front-2 {
+    .main-card {
         height: 100%;
         width: 100%;
         backface-visibility: hidden;
-        display: none;
-        position: absolute;
-        transform: rotateY(0deg);
         overflow: hidden;
         background: #fff;
         color: #000;
-        z-index: 2;
         border-radius: 12px;
-        overflow: hidden;
+    }
+
+    .none {
+        position: relative;
     }
 </style>

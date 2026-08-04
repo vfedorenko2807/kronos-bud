@@ -1,55 +1,74 @@
 ---
-import "../styles.css"
+import "../styles.css";
 import Nav from "../components/Nav.astro";
-import Hero from "../components/sections/Hero.astro"
-import About from "../components/sections/About.astro"
-import Services from "../components/sections/Services.astro"
-import Projects from "../components/sections/Projects.astro"
-import Contact from "../components/sections/Contact.astro"
+import Hero from "../components/sections/Hero.astro";
+import About from "../components/sections/About.astro";
+import Values from "../components/sections/Values.astro";
+import Services from "../components/sections/Services.astro";
+import Projects from "../components/sections/Projects.astro";
+import Contact from "../components/sections/Contact.astro";
 
 import Loading from "../components/sections/Loading.astro";
-
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body class="bg-light-blue">
-		<section id="scroll-wrapper">
-			<section id="scroll-content">
-				<Hero />
-				<About />
-				<Services />
-				<Projects />
-				<Contact />
-			</section>
-		</section>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro</title>
+  </head>
+  <body class="bg-light-blue">
+    <section id="scroll-wrapper">
+      <section id="scroll-content">
+        <Hero />
+        <About />
+        <Values />
+        <Services />
+        <Projects />
+        <Contact />
+      </section>
+    </section>
 
-		<Loading />
-		<Nav/>
-	</body>
+    <Loading />
+    <Nav />
+  </body>
 </html>
 
 <script>
-	document.body.classList.add('no-scroll');
-	setInterval(() => {
-		document.body.classList.remove('no-scroll');
-	}, 2500)
+  document.body.classList.add("no-scroll");
+  setInterval(() => {
+    document.body.classList.remove("no-scroll");
+  }, 2500);
 
-	import { gsap, ScrollTrigger, ScrollSmoother } from "gsap/all";
+  import { gsap, ScrollTrigger, ScrollSmoother } from "gsap/all";
 
-	gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+  gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-	let smoother = ScrollSmoother.create({
-		wrapper: "#scroll-wrapper",
-		content: "#scroll-content",
-	});
+  function initSiteAnimations() {
+    // initialize all section animations here
+    ScrollTrigger.refresh();
+  }
 
-	window.__kronosSmoother = smoother;
+  if (document.readyState === "loading") {
+    window.addEventListener("DOMContentLoaded", initSiteAnimations, {
+      once: true,
+    });
+  } else {
+    initSiteAnimations();
+  }
+
+  window.addEventListener("load", () => {
+    ScrollTrigger.refresh();
+  });
+
+  let smoother = ScrollSmoother.create({
+    wrapper: "#scroll-wrapper",
+    content: "#scroll-content",
+    effects: true,
+  });
+
+  window.__kronosSmoother = smoother;
 </script>
